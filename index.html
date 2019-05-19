@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>It was me</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script src="scripts/visual.js"></script>
+		<script src="scripts/getwrite.js"></script>
+		<script src="scripts/put.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+			<a class="navbar-brand" href="#">
+				<img src="/images/p.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+			It Was Me
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="nav">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+					<button class="btn btn-outline-success" data-toggle="collapse" data-target="#main" aria-controls="#main" aria-expanded="false" style="color: white" type="button" id="openS" state="closed">Open your paper roll selector</button>
+				  </li>
+				  <li class="nav-item active">
+					<button class="btn btn-outline-success" data-toggle="collapse" data-target="#insB" aria-controls="#insB" aria-expanded="false" style="color: white" type="button" id="openF">Add a device</button>
+				  </li>
+				</ul>
+				<ul class="navbar-nav mr-left">
+				  <span class="navbar-text">
+					Change how the selector looks:
+					</span>
+				  <li class="nav-item">
+					<button class="btn btn-outline-success" style="color: white" type="button" id="showS" select="line">Line view</button>
+				  </li>
+				</ul>
+			  </div>
+		</nav>
+		
+		
+		
+		<div class="container-fluid collapse hidden" style="margin-top:30px" id="main">
+		</div>
+		
+		<div class="container-fluid collapse hidden" id="insB" style="padding-top:30px">
+			<div class="row">
+				<p class="col">Input the data of your new Fallon</p>
+			</div>
+			<div class="row">
+				<form class="col" id="insF">
+					<div class="form-group">
+						Hardware ID:</br>
+						<input type="text" class="form-control" name="Hardware_ID" id="hId" required></br>
+						Room (e.g. Dungeon):</br>
+						<input type="text" class="form-control" name="Room" id="room" required></br>
+					</div>
+					<input type="submit" class="btn btn-primary" value="Insert" data-toggle="collapse" data-target="#insB" aria-controls="#insB" aria-expanded="true" id="submitF">
+					<input type="reset" class="btn btn-primary" value="Reset" id="resetF">
+				</form>
+			</div>
+		</div>
+		
+		<div class="container border border-primary shadow p-3 mb-5 bg-white rounded collapse hidden" style="margin-top:30px" id="paper1" state="closed" style="padding-top:30px">
+			<div class="row">
+				<div class="col">
+					<p></p>
+					<h2 class="text-center" id="rn1">Loading ...</h2>
+					<h3 class="text-center" style="margin-top:30px" id="rp1"><h3>
+					<h3 class="text-center" style="margin-top:30px" id="ru1"></h3>
+					<div class="text-center" style="margin-top:30px" id="thisAwaits1"></div>
+					<button class="btn btn-danger btn-block shadow invisible" style="margin-top:30px" type="button" onclick="iDid(1)" id="last1">I replaced the paper roll!</button>
+				</div>
+				<div class="col">
+					<div id="rg1"></div>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="container border border-primary shadow p-3 mb-5 bg-white rounded collapse hidden" style="margin-top:30px" usg="0" id="paper2" style="padding-top:30px">
+			<div class="row">
+				<div class="col">
+					<p></p>
+					<h2 class="text-center" id="rn2">Loading ...</h2>
+					<h3 class="text-center" style="margin-top:30px" id="rp2"><h3>
+					<h3 class="text-center" style="margin-top:30px" id="ru2"></h3>
+					<div class="text-center" style="margin-top:30px" id="thisAwaits2"></div>
+					<button class="btn btn-danger btn-block shadow invisible" style="margin-top:30px" type="button" onclick="iDid(2)" id="last2">I replaced the paper roll!</button>
+				</div>
+				<div class="col text-center">
+					<div id="rg2"></div>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="container border border-primary shadow p-3 mb-5 bg-white rounded collapse hidden" style="margin-top:30px" id="paper3" style="padding-top:30px" newD="Free slot">
+			<div class="row">
+				<div class="col">
+					<p></p>
+					<h2 class="text-center" id="rn3">Loading ...</h2>
+					<h3 class="text-center" style="margin-top:30px" id="rp3"><h3>
+					<h3 class="text-center" style="margin-top:30px" id="ru3"></h3>
+					<div class="text-center" style="margin-top:30px" id="thisAwaits3"></div>
+					<button class="btn btn-danger btn-block shadow invisible" style="margin-top:30px" type="button" onclick="iDid(3)" id="last3">I replaced the paper roll!</button>
+				</div>
+				<div class="col">
+					<div id="rg3"></div>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+		<div class="container-fluid" style="margin-top:100px" id="footer">
+			<div class="row">
+				<div class="col">
+					<img src="images/1.svg" style="display: none; width: 200px; height: 200px" alt="" id="i1"/>
+				</div>
+				<div class="col">
+					<img src="images/2.svg" style="display: none; width: 200px; height: 200px" alt="" id="i2"/>
+				</div>
+				<div class="col">
+					<img src="images/3.svg" style="display: none; width: 200px; height: 200px" alt="" id="i3"/>
+				</div>
+				<div class="col">
+					<img src="images/4.svg" style="display: none; width: 200px; height: 200px" alt="" id="i4"/>
+				</div>
+			</div>
+		<div>
+	
+	</body>
+</html>
